@@ -1,6 +1,6 @@
 //SPDX-License-Identifier: GPL-3.0
-
-pragma solidity >=0.5.0 <0.9.0;
+// created by nikhil
+pragma solidity >=0.5.0 <0.9.0;// i am displaying the version range of solidity being used
 
 contract Lottery{
 
@@ -10,7 +10,7 @@ contract Lottery{
 
 
     constructor(){
-        manager = msg.sender;
+        manager = msg.sender; 
     }
 
     receive () payable external{
@@ -19,25 +19,25 @@ contract Lottery{
     }
 
     function getBalance() public view returns(uint){
-        require(msg.sender == manage,”You are not the manager”r);
+        require(msg.sender == manage,”You are not the manager”r);  // fetching balance
         return address(this).balance;
     }
 
     function random() internal view returns(uint){
-       return uint(keccak256(abi.encodePacked(block.difficulty, block.timestamp, players.length)));
+       return uint(keccak256(abi.encodePacked(block.difficulty, block.timestamp, players.length))); //generating random number as it is lottery system
     }
 
 
     function pickWinner() public{
 
         require(msg.sender == manager);
-        require (players.length >= 3);
+        require (players.length >= 3); //atleast 3 players required
 
         uint r = random();
         address payable winner;
 
 
-        uint index = r % players.length;
+        uint index = r % players.length; // to make it come in <players.length range
 
         winner = players[index];
 
